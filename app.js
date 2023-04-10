@@ -3,8 +3,11 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000
 const userRoutes = require("./server/routes/userRoute");
+const multer  = require('multer')
+const upload = multer()
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(upload.array())
 app.use('/api/v1/user',userRoutes)
 
 app.get('/',(req,res)=>{

@@ -12,6 +12,10 @@ class UserController {
     }
     static async insertUser(req, res) {
         try {
+            if (!(req.body.name && req.body.age)) {
+                util.setError(400,'Please provide name and age');
+                return util.send(res);
+            }
             let itemIds = data.map(item => item.id);
             let newId = itemIds.length > 0 ? Math.max.apply(Math, itemIds) + 1 : 1;
             let newItem = {
@@ -32,6 +36,10 @@ class UserController {
                 return item.id === parseInt(req.params.id);
             });
             if (found) {
+                if (!(req.body.name && req.body.age)) {
+                    util.setError(400,'Please provide name and age');
+                    return util.send(res);
+                }
                 let updated = {
                     id: found.id,
                     name: req.body.name,
