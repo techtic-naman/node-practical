@@ -89,5 +89,27 @@ class UserController {
         }
         return util.send(res);
     }
+    static async uploadFile(req, res) {
+        try {
+            console.log("user body!",req.body)
+            console.log("files-",req.files);
+            util.setSuccess(200, "Successfully uploaded files!",req.files);
+            return util.send(res);
+        } catch (error) {
+            util.setError(400, error);
+            return util.send(res);
+        }
+    }
+    static async uploadProfile(req, res) {
+        try {
+            console.log("user body!",req.body)
+            console.log("file-",req.file);
+            util.setSuccess(200, "Successfully uploaded files!",req.file);
+            return util.send(res);
+        } catch (error) {
+            util.setError(400, error);
+            return util.send(res);
+        }
+    }
 }
 module.exports = UserController;
