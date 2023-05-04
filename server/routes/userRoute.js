@@ -2,12 +2,10 @@ const { Router } = require("express");
 const userController = require("../controllers/UserController");
 const router = Router();
 const multer  = require('multer')
-const { normalize } = require('path')
-let destination = './uploads';
-// const upload = multer({ dest: 'uploads/' })
+let destination = './public/images';
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, 'public/images/');
     },
     filename: function(req, file, cb) {
      cb(null, new Date().toISOString().replace(/:/g, '-')+ file.originalname);

@@ -4,12 +4,9 @@ const app = express();
 const port = 3000
 const userRoutes = require("./server/routes/userRoute");
 var path = require('path');
-// const multer  = require('multer')
-// const upload = multer({ dest: 'uploads/' })
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(upload.array())
-app.use(express.static(path.join(__dirname, '/uploads')));
+app.use('/images',express.static(path.join(__dirname, '/public/images')));
 app.use('/api/v1/user',userRoutes)
 
 app.get('/',(req,res)=>{
